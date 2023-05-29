@@ -1,109 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Ta_Ke</title>
-        <link rel="stylesheet" href="style.css">
-        <!-- Load icon library -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
 
-        <link rel="shortcut icon" type="image/x-icon" href="Ta_ke.png">
-    </head>
-    <body>        
-        <nav>
-           
-            <img class="logo" src="Ta_ke.png"  alt="It's the logo of the company">
-            <!-- HTML -->
-            <div id="navMenu" class="float-right">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        
-            
-            <ul id="menuItems">
-                <li><a href="#about">About</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'"> -->
+    <!-- <https://electronjs.org/docs/tutorial/security#csp-meta-tag> -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+
+    <title>Ta_Ke</title>
+    <link rel="stylesheet" href="css/Style.css">
+    <!-- Load icon library -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" type="image/x-icon" href="img/Ta_ke.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+</head>
+
+<body class="body">
+    <!-- Menu bar -->
+    <nav class="top" >
+        <a href="#playlist" onclick="showTab('playlist')"><img class="logo" src="img/Ta_ke.png" alt="It's the logo of the company"></a>
+
+        <div id="navMenu" class="float-right">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <ul id="menuItems" class="btn-group bnt-new">
+            <li><a class="btn btn-primary" href="#playlist" onclick="showTab('playlist')">Playlist</a></li>
+            <li><a class="btn btn-primary" href="#album" onclick="showTab('album')">Playlist By Band</a></li>
+            <li><a class="btn btn-primary" href="#like" onclick="showTab('like')">Top Songs</a></li>
+            <li><a class="btn btn-primary" href="#add-to-playlist" onclick="showTab('add-to-playlist')">Wait List</a></li>
+        </ul>
+
+        <div class="icon float-right"></div>
+
+
+    </nav>
+
+   
+    <div class="content">
+        <section>
+            <!-- The form -->
+
+            <form class="form-inline input-holder" style="margin:auto;max-width:500px;">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" name="search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+
+            <ul class="icons-menu">
+                <li><a href="#playlist" class="menu-Item selected" onclick="showTab('playlist')"><svg
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <title>playlist-music</title>
+                            <path
+                                d="M15,6H3V8H15V6M15,10H3V12H15V10M3,16H11V14H3V16M17,6V14.18C16.69,14.07 16.35,14 16,14A3,3 0 0,0 13,17A3,3 0 0,0 16,20A3,3 0 0,0 19,17V8H22V6H17Z" />
+                        </svg>
+                        <span>Playlist</span></a></li>
+                <li><a href="#album" class="menu-Item" onclick="showTab('album')"><svg style="margin-left: 40px;"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <title>album</title>
+                            <path
+                                d="M12,11A1,1 0 0,0 11,12A1,1 0 0,0 12,13A1,1 0 0,0 13,12A1,1 0 0,0 12,11M12,16.5C9.5,16.5 7.5,14.5 7.5,12C7.5,9.5 9.5,7.5 12,7.5C14.5,7.5 16.5,9.5 16.5,12C16.5,14.5 14.5,16.5 12,16.5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                        </svg><span>Playlist by Band</span></a></li>
+                <li><a href="#like" class="menu-Item" onclick="showTab('like')"><svg style="margin-left: 30px;"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <title>playlist-star</title>
+                            <path
+                                d="M17 19.1L19.5 20.6L18.8 17.8L21 15.9L18.1 15.7L17 13L15.9 15.6L13 15.9L15.2 17.8L14.5 20.6L17 19.1M3 14H11V16H3V14M3 6H15V8H3V6M3 10H15V12H3V10Z" />
+                        </svg><span>Top Songs</span></a></li>
+                <li><a href="#add-to-playlist" class="menu-Item" onclick="showTab('add-to-playlist')"><svg
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <title>playlist-plus</title>
+                            <path
+                                d="M3 16H10V14H3M18 14V10H16V14H12V16H16V20H18V16H22V14M14 6H3V8H14M14 10H3V12H14V10Z" />
+                        </svg><span>Wait List</span></a></li>
+
             </ul>
+        </section>
+    </div>
 
-        </nav>
     
-            <!-- <div class="separator2"></div> -->
-            <section >
-                <div class="content">
-                    <!-- The form -->
-                    <form class="example" action="/action_page.php" style="margin:auto;max-width:500px;">
-                        <input type="text" placeholder="Search.." name="search">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                    <ul>
-                        <li><a href="#playlist" class="menu-Item selected" onclick="showTab('playlist')"><img src="playlist.png"><span>Playlist</span></a></li>
-                        <li><a href="#album" class="menu-Item" onclick="showTab('album')"><img style="margin-left: 50px;" src="album.png"><span>Playlist by Band</span></a></li> 
-                        <li><a href="#like" class="menu-Item" onclick="showTab('like')"><img style="margin-left: 30px;" src="like.png"><span>Top Songs</span></a></li>
-                        <li><a href="#add-to-playlist" class="menu-Item" onclick="showTab('add-to-playlist')"><img src="add-to-playlist.png"><span>Wait list</span></a></li>
-                        
-                    </ul> 
-                </div>
-                              
-            </section>
 
-            <section>
+    <section>
 
-                <div id="playlist" class="myPlaylist">
-                    <a href="album.html">
-                        <img src="Ta_ke.png" alt="Album Cover" width="200" height="200" title="Click to view album">
-                        <span>International Songs</span>
-                    </a>
-                    <a href="album.html">
-                        <img src="Ta_ke.png" alt="Album Cover" width="200" height="200" title="Click to view album">
-                        <span>Brazilian Songs</span>
-                    </a>
-                    <a href="album.html">
-                        <img src="Ta_ke.png" alt="Album Cover" width="200" height="200" title="Click to view album">
-                        <span>Chilian Songs</span>
-                    </a>
-                    <a href="album.html">
-                        <img src="Ta_ke.png" alt="Album Cover" width="200" height="200" title="Click to view album">
-                        <span>Rock Songs</span>
-                    </a>
-                    <a href="album.html">
-                        <img src="Ta_ke.png" alt="Album Cover" width="200" height="200" title="Click to view album">
-                        <span>Hip-rop Songs</span>
-                    </a>
-                    <a href="album.html">
-                        <img src="Ta_ke.png" alt="Album Cover" width="200" height="200" title="Click to view album">
-                        <span>Country Songs</span>
-                    </a>
-                    <a href="album.html">
-                        <img src="Ta_ke.png" alt="Album Cover" width="200" height="200" title="Click to view album">
-                        <span>Movie Songs</span>
-                    </a>
-                    <a href="album.html">
-                        <img src="Ta_ke.png" alt="Album Cover" width="200" height="200" title="Click to view album">
-                        <span>Disney Songs</span>
-                    </a>
-                    <a href="album.html">
-                        <img src="Ta_ke.png" alt="Album Cover" width="200" height="200" title="Click to view album">
-                        <span>90's Songs</span>
-                    </a>
-                    <a href="album.html">
-                        <img src="Ta_ke.png" alt="Album Cover" width="200" height="200" title="Click to view album">
-                        <span>Pop Songs</span>
-                    </a>
-                    
-                </div>
-                
-                  <!-- <audio controls>
-                    <source src="song1.mp3" type="audio/mpeg">
-                  </audio> -->
-                  
-            </section>
-        
-        
-        <script src="script.js"></script>
-    
-    </body>
+        <ul id="songList" style="display: none;">
+        </ul>
+
+
+        <div id="playlist" class="myPlaylist">
+
+
+            <a href="#" onclick="showSongs('International')">
+                <img src="https://c.saavncdn.com/287/International-Hits-Playlist-English-2018-20180509185208-500x500.jpg"
+                    alt="Album Cover" width="200" height="200" title="Click to view album">
+                <span>International Songs</span>
+            </a>
+
+            <a href="#" onclick="showSongs('Brazilian')">
+                <img src="https://www.listenspotify.com/uploaded_files/Thf_1569401677.jpg" alt="Album Cover" width="200"
+                    height="200" title="Click to view album">
+                <span>Brazilian Songs</span>
+            </a>
+            <a href="#" onclick="showSongs('Spanish')">
+                <img src="https://i.scdn.co/image/ab67616d0000b2730de9e8cc54650419ac6bc75c" alt="Album Cover"
+                    width="200" height="200" title="Click to view album">
+                <span>Spanish Songs</span>
+            </a>
+            <a href="#" onclick="showSongs('Rock')">
+                <img src="https://external-preview.redd.it/ZRNkPg0EMbV7zdy6x4ZiCEQn5RBzTOJlEa5F32ngs_Q.jpg?auto=webp&s=9fbbc743be4b4ffe617a9d6e1fdeac22dc5d4b68"
+                    alt="Album Cover" width="200" height="200" title="Click to view album">
+                <span>Rock Songs</span>
+            </a>
+            <a href="#" onclick="showSongs('Hip-Hop')">
+                <img src="https://img.freepik.com/premium-vector/hip-hop-style-t-shirt-design_9645-1054.jpg?w=2000"
+                    alt="Album Cover" width="200" height="200" title="Click to view album">
+                <span>Hip-Hop Songs</span>
+            </a>
+            <a href="#" onclick="showSongs('Country')">
+                <img src="https://eshsstormalert.com/wp-content/uploads/2019/12/ap-guitar-1129349_1920-1000x666-1-900x599.jpg"
+                    alt="Album Cover" width="200" height="200" title="Click to view album">
+                <span>Country Songs</span>
+            </a>
+            <a href="#" onclick="showSongs('Disney')">
+                <img src="https://cdn.vox-cdn.com/thumbor/bzjfjsQZGrkb2wlMNgZ94f7imz0=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/18314769/staff_disney_songs_ringer.jpg"
+                    alt="Album Cover" width="200" height="200" title="Click to view album">
+                <span>Disney Songs</span>
+            </a>
+            <a href="#" onclick="showSongs('80')">
+                <img src="https://audiocaptain.com/wp-content/uploads/2022/04/best-80s-songs-playlist-1000x600.jpg"
+                    alt="Album Cover" width="200" height="200" title="Click to view album">
+                <span>80's Songs</span>
+            </a>
+            <a href="#" onclick="showSongs('90')">
+                <img src="https://images.squarespace-cdn.com/content/v1/52d6f3cee4b01cea685fa255/1543360566307-EMUOD5RM631ZM0Z9OA80/90s-2.jpg"
+                    alt="Album Cover" width="200" height="200" title="Click to view album">
+                <span>90's Songs</span>
+            </a>
+            <a href="#" onclick="showSongs('Pop')">
+                <img src="https://yt3.googleusercontent.com/FM3eAgGVYfKGv6RBbvqTXychGZQupGZmYFtl8Td0SIgxtw7ZB8tA-2NHheNiNqz1Q08u54aK=s900-c-k-c0x00ffffff-no-rj"
+                    alt="Album Cover" width="200" height="200" title="Click to view album">
+                <span>Pop Songs</span>
+            </a>
+
+        </div>
+        <div id="album" class="myPlaylist">
+
+
+            <a href="#" onclick="showAlbum('Queen')">
+                <img src="https://www.udiscovermusic.com/wp-content/uploads/2019/03/Queen-II-album-cover-820.jpg"
+                    alt="Queen Cover" width="200" height="200" title="Click to view album">
+                <span>Queen</span>
+            </a>
+            <a href="#" onclick="showAlbum('Adele')">
+                <img src="https://live.staticflickr.com/6144/6011569137_f4db79f324_z.jpg" alt="Album Cover" width="200"
+                    height="200" title="Click to view album">
+                <span>Adele</span>
+            </a>
+            <a href="#" onclick="showAlbum('The Beatles')">
+                <img src="https://cdn.europosters.eu/image/1300/calendars/the-beatles-i112601.jpg" alt="Album Cover"
+                    width="200" height="200" title="Click to view album">
+                <span>The Beatles</span>
+            </a>
+            <a href="#" onclick="showAlbum('Michael Jackson')">
+                <img src="https://images.squarespace-cdn.com/content/v1/565c1ab5e4b05079e4bfa169/1663052019309-D205O36E7L2SMA300R60/Michael+Jackson+Invincible+Album+Cover.jpg?format=2500w"
+                    alt="Album Cover" width="200" height="200" title="Click to view album">
+                <span>Michael Jackson</span>
+            </a>
+            <a href="#" onclick="showAlbum('Beyoncé')">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/ad/Beyonc%C3%A9_-_Renaissance.png/220px-Beyonc%C3%A9_-_Renaissance.png"
+                    alt="Album Cover" width="200" height="200" title="Click to view album">
+                <span>Beyoncé</span>
+            </a>
+            <a href="#" onclick="showAlbum('Backstreet Boys')">
+                <img src="https://upload.wikimedia.org/wikipedia/en/c/c2/Albumus.jpg" alt="Album Cover" width="200"
+                    height="200" title="Click to view album">
+                <span>Backstreet Boys</span>
+            </a>
+            <a href="#" onclick="showAlbum('Britney Spears')">
+                <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Britney_Spears_-_Britney.png" alt="Album Cover"
+                    width="200" height="200" title="Click to view album">
+                <span>Britney Spears</span>
+            </a>
+            <a href="#" onclick="showAlbum('Katy Perry')">
+                <img src="https://www.udiscovermusic.com/wp-content/uploads/2018/06/Katy-Perry-One-Of-The-Boys-Album-Cover-web-optimised-820.jpg"
+                    alt="Album Cover" width="200" height="200" title="Click to view album">
+                <span>Katy Perry</span>
+            </a>
+            <a href="#" onclick="showAlbum('Chris Brown')">
+                <img src="https://images.squarespace-cdn.com/content/v1/5a76f4c44c0dbffe87e3b5bd/71615ab1-0ce8-4043-bcde-ac5bf2bd9e1e/5.JPG"
+                    alt="Album Cover" width="200" height="200" title="Click to view album">
+                <span>Chris Brown</span>
+            </a>
+            <a href="#" onclick="showAlbum('Fireboy DML')">
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/Fireboy_DML_-_LTG_album_cover.jpg/220px-Fireboy_DML_-_LTG_album_cover.jpg"
+                    alt="Album Cover" width="200" height="200" title="Click to view album">
+                <span>Fireboy DML</span>
+            </a>
+            <a href="#" onclick="showAlbum('AC-DC')">
+                <img src="https://i.scdn.co/image/ab67616d00001e0251c02a77d09dfcd53c8676d0" alt="Album Cover"
+                    width="200" height="200" title="Click to view album">
+                <span>AC-DC</span>
+            </a>
+            <a href="#" onclick="showAlbum('Aerosmith')">
+                <img src="https://i.scdn.co/image/ab67616d0000b273e6db341b141c438eb28fc3ab" alt="Album Cover"
+                    width="200" height="200" title="Click to view album">
+                <span>Aerosmith</span>
+            </a>
+            <a href="#" onclick="showAlbum('14 Bis')">
+                <img src="https://m.media-amazon.com/images/I/517B-MCzcmL._UF1000,1000_QL80_.jpg" alt="Album Cover"
+                    width="200" height="200" title="Click to view album">
+                <span>14 Bis</span>
+            </a>
+
+
+        </div>
+        <div id="like" class="myPlaylist">
+            <h1 class="coming-soon">Coming Soon</h1>
+        </div>
+        <div id="add-to-playlist" class="myPlaylist">
+            <h1 id="emptyMessage">Empty List.</h1>
+            <!-- <ul id="music-list"></ul> -->
+
+            <div id="list" class="flex-container">
+
+
+                <h1>Waiting List</h1>
+
+
+                <table id="waitingList">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Artist</th>
+                        <th>UserName</th>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+    </section>
+    <!-- Footer-->
+    <footer class="py-5">
+        <div class="container px-4 px-lg-5">
+            <div class="small text-center color">Copyright &copy; 2023 - TaKe</div>
+        </div>
+    </footer>
+    <script src="javascript/script.js"></script>
+
+</body>
+
 </html>
-

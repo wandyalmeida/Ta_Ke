@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<karaokes>
+  <musics name="International">
+    <song>
+      <id>2545</id>
+      <title>Bohemian Rhapsody</title>
+      <artist>Queen</artist>
+      <image>https://pbs.twimg.com/profile_images/1080450214807298048/QUetVW1e_400x400.jpg</image>
+      <genre>Rock</genre>
+    </song>
+    <song>
+      <id>19362</id>
+      <title>Hello</title>
+      <artist>Adele</artist>
+      <image>https://m.media-amazon.com/images/M/MV5BMTM2NzE1YTEtNTNjZC00MTg5LTkwOTEtNDEwMDI1ODA1YjhkXkEyXkFqcGdeQXVyNjU0ODAyOTY@._V1_.jpg</image>      
+      <genre>Pop</genre>
+    </song>
+    <song>
+      <id>20091</id>
+      <title>All I Ask</title>
+      <artist>Adele</artist>
+      <image>https://thestorybehind2017.files.wordpress.com/2017/02/1026ccdf868a60877968999a14aab654.jpg</image>      
+      <genre>Pop</genre>
+    </song>
+    <song>
+      <id>20253</id>
+      <title>Cold Shoulder</title>
+      <artist>Adele</artist>
+      <image>https://pics.filmaffinity.com/Adele_Cold_Shoulder_V_deo_musical-304940900-large.jpg</image>      
+      <genre>Pop</genre>
+    </song>
+    <song>
+      <id>20436</id>
+      <title>Easy On Me</title>
+      <artist>Adele</artist>
+      <image>https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/print-adele-easy-on-me-ar23-ayushita-rohiman-febriani.jpg</image>      
+      <genre>Pop</genre>
+    </song>
+    <song>
+      <id>2569</id>
+      <title>Rolling In The Deep</title>
+      <artist>Adele</artist>
+      <image>https://i.scdn.co/image/ab67616d0000b273aaabd35dde0cfc0bcf315d3e</image>      
+      <genre>Pop</genre>
+    </song>
+    <song>
+      <id>2627</id>
+      <title>Set Fire To The Rain</title>
+      <artist>Adele</artist>
+      <image>https://i1.sndcdn.com/artworks-OsgBGaD5lR4pHLCb-skAyQg-t500x500.jpg</image>      
+      <genre>Pop</genre>
+    </song>
+    <song>
+      <id>19068</id>
+      <title>Skyfall</title>
+      <artist>Adele</artist>
+      <image>https://i1.sndcdn.com/artworks-000087923334-x7q4ss-t500x500.jpg</image>      
+      <genre>Pop</genre>
+    </song>
+    <song>
+      <id>2600</id>
+      <title>Someone Like You</title>
+      <artist>Adele</artist>
+      <image>https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/bfecde30-d64d-4e65-b6a4-43aced34bc6f/d4xjr4n-188c8eae-584e-4d80-9384-2a085f96b1b5.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2JmZWNkZTMwLWQ2NGQtNGU2NS1iNmE0LTQzYWNlZDM0YmM2ZlwvZDR4anI0bi0xODhjOGVhZS01ODRlLTRkODAtOTM4NC0yYTA4NWY5NmIxYjUucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.wOBLpOWDrMOXX8sXNo9PVU2awq0Wj8te_Rf2CNOZOJo</image>      
+      <genre>Pop</genre>
+    </song>
+    <song>
+      <id>4518</id>
+      <title>Help!</title>
+      <artist>The Beatles</artist>
+      <image>https://i1.sndcdn.com/artworks-Bs16uAKzCRrz8LC0-oP9r1Q-t500x500.jpg</image>
+      <genre>Rock</genre>
+    </song>
+    <song>
+      <id>4559</id>
+      <title>Yesterday</title>
+      <artist>The Beatles</artist>
+      <image>https://www.udiscovermusic.com/wp-content/uploads/2019/06/The-Beatles-Yesterday-EP-cover-820.jpg</image>
+      <genre>Rock</genre>
+    </song>
+    <song>
+      <id>2548</id>
+      <title>Beat it</title>
+      <artist>Michael Jackson</artist>
+      <image>https://i1.sndcdn.com/artworks-000329038545-d554xk-t500x500.jpg</image>
+      <genre>Pop</genre>
+    </song>
+    <song>
+      <id>2535</id>
+      <title>Sweet Dreams</title>
+      <artist>Beyoncé</artist>
+      <image>https://m.media-amazon.com/images/M/MV5BZjZmM2Q1Y2EtNWNlZi00Mjk2LWI5ZDktMzBhOTAxYjE4YTVkXkEyXkFqcGdeQXVyNjE0ODc0MDc@._V1_.jpg</image>
+      <genre>Pop</genre>
+    </song>
+    <song>
+      <id>2473</id>
+      <title>I want in that way</title>
+      <artist>Backstreet Boys</artist>
+      <image>https://i.scdn.co/image/ab67616d0000b2732d46afec3dab9a723f7d70a5</image>
+      <genre>Pop</genre>
+    </song>
+    <song>
+      <id>2549</id>
+      <title>Piece of me</title>
+      <artist>Britney Spears</artist>
+      <image>https://i1.sndcdn.com/artworks-6S154wEYrNbvnPIW-yHCI7Q-t500x500.jpg</image>
+      <genre>Pop</genre>
+    </song>
+    <song>
+      <id>2189</id>
+      <title>Last Friday Night</title>
+      <artist>Katy Perry</artist>
+      <image>https://m.media-amazon.com/images/M/MV5BYzQ3YjkzNWItZDUxZi00OGNjLTlkOWQtNWY3Y2JhMmRlMWEzXkEyXkFqcGdeQXVyNzg4MTIxNzg@._V1_.jpg</image>
+      <genre>Pop</genre>
+    </song>
+    <song>
+      <id>2552</id>
+      <title>Under The Infuence</title>
+      <artist>Chris Brown</artist>
+      <image>https://i1.sndcdn.com/artworks-r1XTWXD0DXgbWvhL-3L9Skw-t500x500.png</image>
+      <genre>Soul</genre>
+    </song>
+    <song>
+      <id>2553</id>
+      <title>Peru</title>
+      <artist>Fireboy DML</artist>
+      <image>https://i.scdn.co/image/ab67616d0000b2731c4c28299e3b188a72d07ed8</image>
+      <genre>Pop</genre>
+    </song>
+    <song>
+      <id>19696</id>
+      <title>For Those About To Rock (We Salute You)</title>
+      <artist>AC-DC</artist>
+      <image>https://progrography.com/wp-content/uploads/2018/07/forthoseabouttorock7.jpg</image>
+      <genre>Rock</genre>
+    </song>
+    <song>
+      <id>20370</id>
+      <title>You Shook Me All Night Long</title>
+      <artist>AC-DC</artist>
+      <image>https://m.media-amazon.com/images/M/MV5BYjUxNWNkMWEtZjkzNi00YjgzLTg0MmQtMjE1YzAyMmU0NjlmXkEyXkFqcGdeQXVyNDE4OTY5NzI@._V1_.jpg</image>
+      <genre>Rock</genre>
+    </song>
+    <song>
+      <id>4678</id>
+      <title>Amazing</title>
+      <artist>Aerosmith</artist>
+      <image>https://images.991.com/large_image/Aerosmith+Amazing-23654.jpg</image>
+      <genre>Rock</genre>
+    </song>
+    <song>
+      <id>4879</id>
+      <title>Crazy</title>
+      <artist>Aerosmith</artist>
+      <image>https://upload.wikimedia.org/wikipedia/en/5/58/Aerosmith-Crazy.jpg</image>
+      <genre>Rock</genre>
+    </song>
+    <song>
+      <id>19165</id>
+      <title>Cryin'</title>
+      <artist>Aerosmith</artist>
+      <image>https://m.media-amazon.com/images/M/MV5BZmIzYTE1YjYtZGUzMC00ZWY4LWE0ZjQtMmQxMjkzMzUxOGNkXkEyXkFqcGdeQXVyNDE4OTY5NzI@._V1_.jpg</image>
+      <genre>Rock</genre>
+    </song>
+    <song>
+      <id>19172</id>
+      <title>Dream on</title>
+      <artist>Aerosmith</artist>
+      <image>https://lastfm.freetls.fastly.net/i/u/ar0/57d1a850630344b29535545725daf245.jpg</image>
+      <genre>Rock</genre>
+    </song>
+    <song>
+      <id>20225</id>
+      <title>Hole In My Soul</title>
+      <artist>Aerosmith</artist>
+      <image>https://m.media-amazon.com/images/M/MV5BMDI4NzVkNjUtMGQ2Mi00YzUzLTk1MzktY2Q5MmMxMTAyODBjXkEyXkFqcGdeQXVyNTk1NTMyNzM@._V1_FMjpg_UX1000_.jpg</image>
+      <genre>Rock</genre>
+    </song>
+    <song>
+      <id>4909</id>
+      <title>I Don't Want To Miss A Thing</title>
+      <artist>Aerosmith</artist>
+      <image>https://static.stereogum.com/uploads/2022/06/Aerosmith-I-Dont-Want-To-Miss-A-Thing-1654808981.jpg</image>
+      <genre>Rock</genre>
+    </song>
+    <song>
+      <id>19505</id>
+      <title>Janie's Got A Gun</title>
+      <artist>Aerosmith</artist>
+      <image>https://upload.wikimedia.org/wikipedia/en/e/e0/JaniesGotaGun.jpg</image>
+      <genre>Rock</genre>
+    </song>
+    <song>
+      <id>19876</id>
+      <title>Livin On The Edge</title>
+      <artist>Aerosmith</artist>
+      <image>https://m.media-amazon.com/images/I/61HElc2aymL._AC_SX355_.jpg</image>
+      <genre>Rock</genre>
+    </song>
+  </musics>
+  <musics name="Brazilian">
+    <song>
+      <id>3755</id>
+      <title>Linda Juventude</title>
+      <artist>14 Bis</artist>
+      <image>https://i.ytimg.com/vi/xUU0SlC7Om0/hqdefault.jpg</image>
+      <genre>MPB</genre>
+    </song>
+    <song>
+      <id>6074</id>
+      <title>Planeta Sonho</title>
+      <artist>14 Bis</artist>
+      <image>https://i.scdn.co/image/ab67616d0000b2735a03a8e942fe156571dc8fae</image>
+      <genre>MPB</genre>
+    </song>
+    <song>
+      <id>6197</id>
+      <title>Todo Azul Do Mar</title>
+      <artist>14 Bis</artist>
+      <image>https://i.ytimg.com/vi/iGsyimPlO50/maxresdefault.jpg</image>
+      <genre>MPB</genre>
+    </song>
+  </musics>
+ </karaokes>
