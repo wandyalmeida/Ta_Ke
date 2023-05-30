@@ -37,6 +37,10 @@ document.getElementById("navMenu").addEventListener("click", function() {
     // Show selected tab
     document.getElementById(tabName).style.display = "block";
     document.getElementById("songList").style.display = "none";
+      // If the add-to-playlist tab is being shown, load the waiting list data
+    if (tabName === 'add-to-playlist') {
+      loadWaitingListFromPage();
+    }
   }
 
   // show the first tab by default
@@ -56,24 +60,40 @@ document.getElementById("navMenu").addEventListener("click", function() {
   });
 
   // insert the song on the database
-  function addToWaitingList(id, title, artist, userName) {
-    db.transaction(function (tx) {
-      tx.executeSql(
-        'SELECT * FROM waitList WHERE ID_song = ? And userName = ?',
-        [id, userName],
-        function (tx, results) {
-          if (results.rows.length == 0) {
-            tx.executeSql(
-              'INSERT INTO waitList (ID_song, title, artist, userName) VALUES (?, ?, ?, ?)',
-              [id, title, artist, userName],
+  // function addToWaitingList(id, title, artist, userName) {
+  //   db.transaction(function (tx) {
+  //     tx.executeSql(
+  //       'SELECT * FROM waitList WHERE ID_song = ? And userName = ?',
+  //       [id, userName],
+  //       function (tx, results) {
+  //         if (results.rows.length == 0) {
+  //           tx.executeSql(
+  //             'INSERT INTO waitList (ID_song, title, artist, userName) VALUES (?, ?, ?, ?)',
+  //             [id, title, artist, userName],
               
-            );
-           } 
-        },
-      );
+  //           );
+  //          } 
+  //       },
+  //     );
+  //   });
+  // }
+ 
+  async function addToWaitingList(id, title, artist, userName) {
+    const response = await fetch('/addToWaitingList', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        userName,
+        musicId: id,
+        artist: artist,
+        musicName: title,
+      })
     });
+    const result = await response.json();
+    console.log(result);
   }
-  
   
   function getWaitingListFromPage() {
       var waitingList = [];
@@ -88,40 +108,40 @@ document.getElementById("navMenu").addEventListener("click", function() {
       return waitingList;
   }
   
-  function removeFromWaitingList(id, userName) {
-    // Find waitlist item with matching ID
-    var table = document.getElementById("waitingList");
-    var rows = Array.from(table.getElementsByTagName("tr"));
-    for (var i = 0; i < rows.length; i++) {
-    if (rows[i].getAttribute("data-id") == id &&  rows[i].getAttribute("data-userName") == userName) {
-    // Add call to function that deletes music from database
-    deleteSongFromDatabase(id, userName);
-    table.removeChild(rows[i]);
-    break;
-    }
-    }
+  // function removeFromWaitingList(id, userName) {
+  //   // Find waitlist item with matching ID
+  //   var table = document.getElementById("waitingList");
+  //   var rows = Array.from(table.getElementsByTagName("tr"));
+  //   for (var i = 0; i < rows.length; i++) {
+  //   if (rows[i].getAttribute("data-id") == id &&  rows[i].getAttribute("data-userName") == userName) {
+  //   // Add call to function that deletes music from database
+  //   deleteSongFromDatabase(id, userName);
+  //   table.removeChild(rows[i]);
+  //   break;
+  //   }
+  //   }
 
-    // Show empty lists message if list is empty
-    if (table.getElementsByTagName("tr").length === 1) {
-    var emptyMessage = document.getElementById("emptyMessage");
-    emptyMessage.style.display = "block";
-    var listDiv = document.getElementById("list");
-    listDiv.style.display = "none";
-    }
+  //   // Show empty lists message if list is empty
+  //   if (table.getElementsByTagName("tr").length === 1) {
+  //   var emptyMessage = document.getElementById("emptyMessage");
+  //   emptyMessage.style.display = "block";
+  //   var listDiv = document.getElementById("list");
+  //   listDiv.style.display = "none";
+  //   }
     
-    // Save waitlist in sqlite
-    var waitingList = getWaitingListFromPage();
+  //   // Save waitlist in sqlite
+  //   var waitingList = getWaitingListFromPage();
     
-   }
+  //  }
    
-   // function to check and delete only the song that user want to delete if have 2 songs with the same id on the list.
-   function deleteSongFromDatabase(id, userName) {
-    db.transaction(function (tx) {
-    tx.executeSql('DELETE FROM waitList WHERE ID_song = ? AND userName = ?', [id, userName], function(tx, results) {
-    });
-    });
+  //  // function to check and delete only the song that user want to delete if have 2 songs with the same id on the list.
+  //  function deleteSongFromDatabase(id, userName) {
+  //   db.transaction(function (tx) {
+  //   tx.executeSql('DELETE FROM waitList WHERE ID_song = ? AND userName = ?', [id, userName], function(tx, results) {
+  //   });
+  //   });
     
-   }
+  //  }
    
 // function to not duplicate the list if the user click mutiplo times on the playlist
 function resetSongList() {
@@ -394,7 +414,7 @@ function showUserNameInput(button, id, title, artist) {
       });
       songInfoDiv.appendChild(originalButton);
     }, 3000);
-      loadWaitingListFromDatabase();
+      loadWaitingListFromPage();
       userNameInput.style.display="none";
       addButton.remove();
         
@@ -404,122 +424,238 @@ function showUserNameInput(button, id, title, artist) {
 
 }
 
-//function to delete everything that is on the database
-function deleteAll() {
+// //function to delete everything that is on the database
+// function deleteAll() {
 
-  db.transaction(function (tx) {
-    tx.executeSql('DELETE FROM waitList');
+//   db.transaction(function (tx) {
+//     tx.executeSql('DELETE FROM waitList');
     
-    loadWaitingListFromDatabase();
-  });
+//     loadWaitingListFromPage();
+//   });
 
+// }
+function removeFromWaitingList(itemId, userName) {
+  // Make an HTTP request to the /removeFromWaitingList route to remove the specified item from the waiting list
+  fetch('/removeFromWaitingList', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          itemId: itemId,
+          userName: userName
+      })
+  }).then(function (response) {
+      // Reload the waiting list data after the item has been removed
+      loadWaitingListFromPage();
+  });
 }
 
-// Get everything that is save on the database to display on the page in a table
-function loadWaitingListFromDatabase() {
+function deleteAll() {
+  // Make an HTTP request to the /deleteAll route to remove all items from the waiting list
+  fetch('/deleteAll', {
+      method: 'POST'
+  }).then(function (response) {
+      // Reload the waiting list data after all items have been removed
+      loadWaitingListFromPage();
+  });
+}
+
+
+// // Get everything that is save on the database to display on the page in a table
+// function loadWaitingListFromPage() {
  
-  db.transaction(function(tx) {
-    tx.executeSql('SELECT * FROM waitList', [], function(tx, results) {
-      var len = results.rows.length;
+//   db.transaction(function(tx) {
+//     tx.executeSql('SELECT * FROM waitList', [], function(tx, results) {
+//       var len = results.rows.length;
       
       
-      if (len === 0) {
-        // If the waiting list is empty, show the message "empty lists" and hide the waiting lists
-        var emptyMessage = document.getElementById("emptyMessage");
-        emptyMessage.style.display = "block";
+//       if (len === 0) {
+//         // If the waiting list is empty, show the message "empty lists" and hide the waiting lists
+//         var emptyMessage = document.getElementById("emptyMessage");
+//         emptyMessage.style.display = "block";
         
-        var listDiv = document.getElementById("list");
-        listDiv.style.display = "none";
+//         var listDiv = document.getElementById("list");
+//         listDiv.style.display = "none";
         
-      } else {
-        // If the waiting list is not empty, hide the "empty lists" message and show the waiting lists
-        var emptyMessage = document.getElementById("emptyMessage");
-        emptyMessage.style.display = "none";
-        var listDiv = document.getElementById("list");
-        listDiv.style.display = "block";
+//       } else {
+//         // If the waiting list is not empty, hide the "empty lists" message and show the waiting lists
+//         var emptyMessage = document.getElementById("emptyMessage");
+//         emptyMessage.style.display = "none";
+//         var listDiv = document.getElementById("list");
+//         listDiv.style.display = "block";
   
-        var table = document.getElementById("waitingList");
-        table.innerHTML = "";
+//         var table = document.getElementById("waitingList");
+//         table.innerHTML = "";
 
-        // Recreate the header row
-        var headerRow = document.createElement("tr");
-        var headers = ["ID", "Title", "Artist", "UserName", ""];
-        for (var i = 0; i < headers.length; i++) {
-            var th = document.createElement("th");
-            th.textContent = headers[i];
-            headerRow.appendChild(th);
-        }
-        var removeButton = document.createElement("button");
-        removeButton.className = "btn btn-primary";
-        removeButton.textContent = "Remove all";
-        removeButton.addEventListener("click", function() {
-            deleteAll();
-        });
-        headerRow.lastChild.appendChild(removeButton);
+//         // Recreate the header row
+//         var headerRow = document.createElement("tr");
+//         var headers = ["ID", "Title", "Artist", "UserName", ""];
+//         for (var i = 0; i < headers.length; i++) {
+//             var th = document.createElement("th");
+//             th.textContent = headers[i];
+//             headerRow.appendChild(th);
+//         }
+//         var removeButton = document.createElement("button");
+//         removeButton.className = "btn btn-primary";
+//         removeButton.textContent = "Remove all";
+//         removeButton.addEventListener("click", function() {
+//             deleteAll();
+//         });
+//         headerRow.lastChild.appendChild(removeButton);
 
-        table.appendChild(headerRow);
+//         table.appendChild(headerRow);
 
 
-      }
+//       }
       
-      for (var i = 0; i < len; i++) {
-        var row = results.rows.item(i);
+//       for (var i = 0; i < len; i++) {
+//         var row = results.rows.item(i);
         
-        // Check if the song is already on the queue list
-        var waitingList = getWaitingListFromPage();
-        var songAlreadyInList = waitingList.some(function(song) {
-          return song.id == row.ID_song && song.userName == row.userName;
-        });
+//         // Check if the song is already on the queue list
+//         var waitingList = getWaitingListFromPage();
+//         var songAlreadyInList = waitingList.some(function(song) {
+//           return song.id == row.ID_song && song.userName == row.userName;
+//         });
         
-        if (songAlreadyInList) {
-          // The song is already on the queue list, so we don't need to add it again
-          continue;
-        }
+//         if (songAlreadyInList) {
+//           // The song is already on the queue list, so we don't need to add it again
+//           continue;
+//         }
      
-        // Create a new table row with the song's title, artist and "Remove" button
-        var tr = document.createElement("tr");
-        tr.setAttribute("data-id", row.ID_song);
-        tr.setAttribute("data-userName", row.userName);
+//         // Create a new table row with the song's title, artist and "Remove" button
+//         var tr = document.createElement("tr");
+//         tr.setAttribute("data-id", row.ID_song);
+//         tr.setAttribute("data-userName", row.userName);
 
         
         
-        var idCell = document.createElement("td");
-        idCell.textContent = row.ID_song;
-        tr.appendChild(idCell);
+//         var idCell = document.createElement("td");
+//         idCell.textContent = row.ID_song;
+//         tr.appendChild(idCell);
         
-        var titleCell = document.createElement("td");
-        titleCell.textContent = row.title;
-        tr.appendChild(titleCell);
+//         var titleCell = document.createElement("td");
+//         titleCell.textContent = row.title;
+//         tr.appendChild(titleCell);
         
-        var artistCell = document.createElement("td");
-        artistCell.textContent = row.artist;
-        tr.appendChild(artistCell);
+//         var artistCell = document.createElement("td");
+//         artistCell.textContent = row.artist;
+//         tr.appendChild(artistCell);
         
-        var userNameCell = document.createElement("td");
-        userNameCell.textContent = row.userName;
-        tr.appendChild(userNameCell);
+//         var userNameCell = document.createElement("td");
+//         userNameCell.textContent = row.userName;
+//         tr.appendChild(userNameCell);
         
-        var removeButton = document.createElement("button");
-        removeButton.className = "btn btn-primary";
-        removeButton.innerHTML = "Remove";
-        removeButton.addEventListener("click", function() {
-          var itemId = this.parentNode.parentNode.getAttribute("data-id");
-          var userName = this.parentNode.parentNode.getAttribute("data-userName");
-          removeFromWaitingList(itemId, userName);
+//         var removeButton = document.createElement("button");
+//         removeButton.className = "btn btn-primary";
+//         removeButton.innerHTML = "Remove";
+//         removeButton.addEventListener("click", function() {
+//           var itemId = this.parentNode.parentNode.getAttribute("data-id");
+//           var userName = this.parentNode.parentNode.getAttribute("data-userName");
+//           removeFromWaitingList(itemId, userName);
           
-          // loadWaitingListFromDatabase();
-        });
-        var removeCell = document.createElement("td");
-        removeCell.appendChild(removeButton);
-        tr.appendChild(removeCell);
+//           // loadWaitingListFromPage();
+//         });
+//         var removeCell = document.createElement("td");
+//         removeCell.appendChild(removeButton);
+//         tr.appendChild(removeCell);
 
-        // Add the table row to the table
-        var table = document.getElementById("waitingList");
-        table.appendChild(tr);
-        }
-        });
-        });
-        }
+//         // Add the table row to the table
+//         var table = document.getElementById("waitingList");
+//         table.appendChild(tr);
+//         }
+//         });
+//         });
+//         }
+
+async function loadWaitingListFromPage() {
+  // Make an HTTP request to the /waitingList route to retrieve the waiting list data
+  const response = await fetch('/waitingList');
+  const waitingList = await response.json();
+  console.log(waitingList);
+
+  if (waitingList.length === 0) {
+      // If the waiting list is empty, show the message "empty lists" and hide the waiting lists
+      var emptyMessage = document.getElementById("emptyMessage");
+      emptyMessage.style.display = "block";
+      var listDiv = document.getElementById("list");
+      listDiv.style.display = "none";
+  } else {
+      // If the waiting list is not empty, hide the "empty lists" message and show the waiting lists
+      var emptyMessage = document.getElementById("emptyMessage");
+      emptyMessage.style.display = "none";
+      var listDiv = document.getElementById("list");
+      listDiv.style.display = "block";
+
+      // Display the waiting list data on the page
+      var table = document.getElementById("waitingList");
+      table.innerHTML = "";
+      console.log('estou passando aq')
+
+      // Recreate the header row
+      var headerRow = document.createElement("tr");
+      var headers = ["ID", "Title", "Artist", "UserName", ""];
+      for (var i = 0; i < headers.length; i++) {
+          var th = document.createElement("th");
+          th.textContent = headers[i];
+          headerRow.appendChild(th);
+      }
+      var removeButton = document.createElement("button");
+      removeButton.className = "btn btn-primary";
+      removeButton.textContent = "Remove all";
+      removeButton.addEventListener("click", function () {
+          deleteAll();
+      });
+      headerRow.lastChild.appendChild(removeButton);
+      table.appendChild(headerRow);
+
+      for (var i = 0; i < waitingList.length; i++) {
+          var row = waitingList[i];
+          console.log(row);
+
+          // Create a new table row with the song's title, artist and "Remove" button
+          var tr = document.createElement("tr");
+          tr.setAttribute("data-id", row.musicId);
+          tr.setAttribute("data-userName", row.userName);
+
+          var idCell = document.createElement("td");
+          idCell.textContent = row.musicId;
+          tr.appendChild(idCell);
+          console.log('Id song: ' + row.musicId);
+
+          var titleCell = document.createElement("td");
+          titleCell.textContent = row.musicName;
+          tr.appendChild(titleCell);
+
+          var artistCell = document.createElement("td");
+          artistCell.textContent = row.artist;
+          tr.appendChild(artistCell);
+
+          var userNameCell = document.createElement("td");
+          userNameCell.textContent = row.userName;
+          tr.appendChild(userNameCell);
+
+          var removeButton = document.createElement("button");
+          removeButton.className = "btn btn-primary";
+          removeButton.innerHTML = "Remove";
+          removeButton.addEventListener("click", function () {
+              var itemId = this.parentNode.parentNode.getAttribute("data-id");
+              var userName = this.parentNode.parentNode.getAttribute("data-userName");
+              removeFromWaitingList(itemId, userName);
+              // loadWaitingListFromPage();
+          });
+
+          var removeCell = document.createElement("td");
+          removeCell.appendChild(removeButton);
+          tr.appendChild(removeCell);
+
+          // Add the table row to the table
+          table.appendChild(tr);
+      }
+  }
+}
+
+
 
 // Call the load WaitingList From Database function when the page is loaded
-window.addEventListener("load", loadWaitingListFromDatabase);
+window.addEventListener("load", loadWaitingListFromPage);
